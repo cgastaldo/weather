@@ -16,12 +16,24 @@ function fetchWeatherInformation(userLocation){
         return response.json();
     })
     .then(function(response){
-        console.log(response.currentConditions.conditions);
-        console.log(response.currentConditions.temp);
-        console.log(response.currentConditions.feelslike);
-        console.log(response.currentConditions.humidity);
+        conditions = response.currentConditions.conditions;
+        temp = response.currentConditions.temp;
+        feelsLike = response.currentConditions.feelslike;
+        humidity = response.currentConditions.humidity;
+        setWeatherConditions(temp, humidity, feelsLike, conditions, userLocation);
     });
 }
 
 
+function setWeatherConditions(temp, humidity, feelsLike, conditions, userLocation){
+    let setTemp = document.getElementById('temp');
+    let setHumidity = document.getElementById('humidity');
+    let setFeelsLike = document.getElementById('feelsLike');
+    let setConditions = document.getElementById('conditions');
+
+    setTemp.textContent = temp + "F";
+    setHumidity.textContent = humidity + "%";
+    setFeelsLike.textContent = feelsLike + "F";
+    setConditions.textContent = conditions + " in " + userLocation;
+}
 
